@@ -1,3 +1,12 @@
+This is my self-maintained fork of Cactus theme.
+I maintain this fork to satisfy my own need,
+and only cherrypick from the original repo.
+Therefore this repo is not intended to be used by any other than myself.
+Please kindly walk away and visit
+[the original and official Cactus](https://github.com/probberechts/hexo-theme-cactus)
+
+Following is the original readme file.
+
 # Cactus
 
 A responsive, clean and simple [Hexo](http://hexo.io) theme for a personal website.
