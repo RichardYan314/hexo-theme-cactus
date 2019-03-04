@@ -1,9 +1,9 @@
 #header-post
   position: fixed
   top: 2rem
-  right: 0
+  left: 0
   display: inline-block
-  float: right
+  float: left
   z-index: 100
 
   a
@@ -35,9 +35,9 @@
       margin-right: 0
 
   #menu-icon
-    float: right
-    margin-right: 2rem
-    margin-left: 15px
+    float: left
+    margin-left: 2rem
+    margin-right: 15px
 
     &:hover
       color: $color-accent-1
@@ -95,11 +95,11 @@
           margin-right: 0
 
   #actions
-    float: right
+    float: left
     margin-top: 2rem
-    margin-right: 2rem
+    margin-left: 2rem
     width: 100%
-    text-align: right
+    text-align: left
 
     ul
       display: block
@@ -119,20 +119,25 @@
       margin: 0
 
   #toc
-    float: right
+    float: left
     clear: both
     overflow: auto
     margin-top: 1rem
     padding-right: 2rem
     max-width: 20em
     max-height: calc(95vh - 7rem)
-    text-align: right
+    text-align: left
 
     a:hover
       color: $color-link
 
     .toc-level-1 > .toc-link
-      display: none
+      //display: none
+      font-size: 1rem
+      font-weight: bold
+
+    .toc-level-1 > ol.toc-child
+      padding-inline-start: 0
 
     .toc-level-2
       color: $color-text
@@ -172,7 +177,7 @@
     #actions
       display: none
 
-@media screen and (max-width: 1199px)
+@media screen and (max-width: 1349px)
   #header-post
     #toc
       display: none
