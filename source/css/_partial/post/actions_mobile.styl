@@ -8,6 +8,9 @@
   border-top: 1px solid $color-border
   background: $color-footer-mobile-1
   transition: opacity .2s
+  max-height: 100vh
+  display: flex
+  flex-direction: column
 
   a
     background: none
@@ -47,7 +50,7 @@
         vertical-align: middle
 
   #actions-footer
-    overflow: auto
+    //overflow: auto
     margin-top: 1rem
     margin-bottom: 1rem
     padding-right: 1rem
@@ -86,6 +89,7 @@
     padding-bottom: 1rem
     background: $color-footer-mobile-2
     text-align: left
+    overflow-y: scroll
 
     ol
       margin: 0

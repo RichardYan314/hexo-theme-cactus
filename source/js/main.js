@@ -78,6 +78,37 @@ $(document).ready(function() {
     }
 
     /**
+     * Click out side footer to hide toc
+     */
+    $('#footer-post-container').click(function(event) {
+      event.stopPropagation();
+    })
+    $.fn.dontScrollParent = function() {
+      this.on('scroll', function(e) {
+        // return false to call
+        // event.stopPropagation() and
+        // event.preventDefault()
+        return false;
+
+        // return true only at top or buttom
+        /*
+        var delta = e.originalEvent.wheelDelta || -e.originalEvent.detail;
+
+        if (delta > 0 && $(this).scrollTop() <= 0)
+          return false;
+        if (delta < 0 && $(this).scrollTop() >= this.scrollHeight - $(this).height())
+          return false;
+
+        return true;
+        */
+      });
+    }
+    $('#footer-post-container').dontScrollParent();
+    $('html').click(function() {
+      $('#toc-footer').hide();
+    })
+
+    /**
      * Show mobile navigation menu after scrolling upwards,
      * hide it again after scrolling downwards.
      */

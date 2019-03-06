@@ -1,16 +1,16 @@
 <div id="footer-post-container">
   <div id="footer-post">
 
+    <div id="toc-footer" onclick="$('#toc-footer').hide()" style="display: none">
+      <%- toc(page.content) %>
+    </div>
+
     <div id="nav-footer" style="display: none">
       <ul>
         <% for (var i in theme.nav) { %> 
           <li><a href="<%- url_for(theme.nav[i]) %>"><%= __('nav.'+i).replace("nav.", "") %></a></li>
         <% } %>
       </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <%- toc(page.content) %>
     </div>
 
     <div id="share-footer" style="display: none">
