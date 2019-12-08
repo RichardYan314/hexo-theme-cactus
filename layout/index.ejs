@@ -26,7 +26,40 @@
     </p>
   <% } %>
 </section>
+<section id="quote">
+  <%- css('css/blockquote') %>
+  <script type="text/javascript">
+    var currentScript = document.currentScript;
 
+    window.addEventListener("load", () => {
+      $.get("quotes.json", function(data) {
+        quote = data[Math.floor(Math.random() * data.length)];
+
+        var p = document.createElement('p');
+        p.innerText = quote.quote;
+
+        var author = document.createElement('strong');
+        author.innerText = quote.author || '';
+
+        var cite = document.createElement('cite');
+        cite.innerText = quote.cite || '';
+
+        var footer = document.createElement('footer');
+        footer.appendChild(author);
+        footer.appendChild(cite);
+
+        var blockquote = document.createElement('blockquote');
+        blockquote.appendChild(p);
+        blockquote.appendChild(footer);
+
+        currentScript.after(blockquote);
+      })
+      .fail((...error) => {
+        console.log(error);
+      });
+    });
+  </script>
+</section>
 <section id="writing">
   <span class="h1"><a href="<%- url_for("archives") %>"><%= __('index.articles') %></a></span>
   <% if (theme.tags_overview && site.tags.length) { %>
