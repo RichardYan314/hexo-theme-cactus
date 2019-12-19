@@ -27,36 +27,71 @@
   <% } %>
 </section>
 <section id="quote">
+  <span class="h1">Quotes</span>
   <%- css('css/blockquote') %>
+  <style type="text/css">
+
+    #quote-nav ul {
+      margin: 0;
+    }
+    #quote-nav li {
+      display: inline-block;
+      margin-right: 15px;
+      vertical-align: middle;
+    }
+    #quote-nav a {
+      margin-right: '15px';
+      color: #666;
+      text-decoration: underline;
+      background-image: none;
+    }
+  </style>
+  <nav id="quote-nav"><ul>
+    <li><a id="quote-nav-rand">random</a></li>
+    <li><a id="quote-nav-all">all</a></li>
+  </ul></nav>
   <script type="text/javascript">
+    var data = <%- include('../../../source/quotes.json'); %>
+
     var currentScript = document.currentScript;
 
     window.addEventListener("load", () => {
-      $.get("quotes.json", function(data) {
-        quote = data[Math.floor(Math.random() * data.length)];
-
-        var p = document.createElement('p');
-        p.innerText = quote.quote;
+      blockquotes = data.map(quote => {
+      var p = document.createElement('p');
+        p.innerHTML = quote.quote;
 
         var author = document.createElement('strong');
-        author.innerText = quote.author || '';
+        author.innerHTML = quote.author || '';
 
         var cite = document.createElement('cite');
-        cite.innerText = quote.cite || '';
+        cite.innerHTML = quote.cite || '';
 
         var footer = document.createElement('footer');
         footer.appendChild(author);
         footer.appendChild(cite);
 
         var blockquote = document.createElement('blockquote');
+        blockquote.style.display = 'none';
         blockquote.appendChild(p);
         blockquote.appendChild(footer);
 
-        currentScript.after(blockquote);
+        return blockquote;
       })
-      .fail((...error) => {
-        console.log(error);
-      });
+
+      function selectRandom() {
+        blockquotes.forEach(blockquote => blockquote.style.display = 'none');
+        blockquotes[Math.floor(Math.random() * blockquotes.length)].style.display = '';
+      }
+
+      function showAll() {
+        blockquotes.forEach(blockquote => blockquote.style.display = '');
+      }
+
+      document.querySelector('#quote-nav-rand').onclick = selectRandom;
+      document.querySelector('#quote-nav-all').onclick = showAll;
+
+      currentScript.after(...blockquotes);
+      selectRandom();
     });
   </script>
 </section>
